@@ -1,0 +1,70 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "cam_rig_example",
+                "grover_metadata": [
+                    {
+                        "keepout": false
+                    },
+                    {
+                        "nav_enter": [
+                            {
+                                "attachment": {
+                                    "device": "Strobe Generator",
+                                    "function": "activate",
+                                    "arguments": [
+                                        1
+                                    ]
+                                }
+                            },
+                            {
+                                "attachment": {
+                                    "device": "Strobe Generator",
+                                    "function": "activate",
+                                    "arguments": [
+                                        0
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            175.314337,
+                            -37.772094,
+                            0.0
+                        ],
+                        [
+                            175.314572,
+                            -37.772028,
+                            0.0
+                        ],
+                        [
+                            175.315049,
+                            -37.772538,
+                            0.0
+                        ],
+                        [
+                            175.314815,
+                            -37.7726,
+                            0.0
+                        ],
+                        [
+                            175.314337,
+                            -37.772094,
+                            0.0
+                        ]
+                    ]
+                ]
+            }
+        }
+    ]
+}

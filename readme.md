@@ -21,6 +21,7 @@ The PF Camera Rig is an attachment for Grover robots that captures images at spe
 
 ```
 ├── docker-compose.yaml       # Docker configuration for ROS2 environment
+├── example.geojson           # Example GeoJSON file for automatic capture triggering
 ├── ros2_ws/                  # ROS2 workspace
 │   └── src/                  # Source packages
 │       └── grover_bridge/    # MQTT bridge package
@@ -94,10 +95,35 @@ The `PFCamRigMetadata` message contains:
 - **GPS coordinates**: Latitude, longitude, and altitude from the robot's GPS
 - **Heading**: Direction the robot was facing when the image was captured
 - **Odometry data**: Position and velocity information from the robot's odometry
-- **Run number**: Identifies a specific capture session
-- **Sequence number**: Identifies the image within a capture session
+- **Run number**: Identifies a specific capture session (from trigger-on to trigger-off within a boot)
+- **Sequence number**: Identifies the image within a capture run (sequential index within that run)
 
 This information can be used to georeference the images and track the robot's path.
+
+## Automatic Capture Triggering with GeoJSON
+
+The repository includes an `example.geojson` file that demonstrates how to configure automatic capture triggering when the Grover robot enters specific geographic areas.
+
+### How GeoJSON Triggering Works
+
+1. The Grover robot can load GeoJSON files containing polygons with special metadata.
+2. When the robot enters a polygon with camera rig trigger metadata, it automatically activates the camera capture system.
+3. When the robot exits the polygon, it deactivates the capture system.
+
+### Trigger Distance Calculation
+
+The camera rig captures images based on distance traveled:
+
+- **During autonomous navigation**: The trigger distance is calculated as the linear distance to the next target waypoint in the navigation path.
+- **Without autonomous navigation**: The trigger distance is calculated as the linear distance traveled forward
+
+### Run and Sequence Numbering
+
+In the metadata messages:
+- **Run number**: Represents a complete capture session from when the trigger is activated to when it's deactivated within a single boot of the robot. Each time the robot enters and exits a polygon (or manually triggers on/off), the run number increments.
+- **Sequence number**: Represents the sequential index of an image within a specific run. This resets to 0 at the start of each new run.
+
+This numbering system makes it easy to organize and process images from specific capture sessions.
 
 ## How It Works
 
