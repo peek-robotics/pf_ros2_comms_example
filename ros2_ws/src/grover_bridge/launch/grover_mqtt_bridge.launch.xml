@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+  PF Camera Rig MQTT Bridge Launch File
+  
+  This launch file starts the MQTT bridge for the PF Camera Rig metadata.
+  It loads configuration from the specified YAML file and starts the grover_metadata node.
+  
+  Author: Peek Robotics
+  Copyright (C) 2025, Peek Robotics
+-->
+<launch>
+  <!-- Path to the configuration file -->
+  <arg name="params_file" default="$(find-pkg-share grover_bridge)/config/grover_metadata.yaml" 
+       description="Path to the YAML file containing MQTT and output configuration"/>
+  
+  <!-- Launch the metadata bridge node -->
+  <node pkg="grover_bridge" exec="grover_metadata" name="grover_metadata" namespace="" output="screen">
+    <param from="$(var params_file)" />
+  </node>
+</launch>
