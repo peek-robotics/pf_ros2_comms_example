@@ -20,7 +20,7 @@ The PF Camera Rig is an attachment for Grover robots that captures images at spe
 ## Repository Structure
 
 ```
-├── docker_compose.yaml       # Docker configuration for ROS2 environment
+├── docker-compose.yaml       # Docker configuration for ROS2 environment
 ├── ros2_ws/                  # ROS2 workspace
 │   └── src/                  # Source packages
 │       └── grover_bridge/    # MQTT bridge package
@@ -46,10 +46,23 @@ The PF Camera Rig is an attachment for Grover robots that captures images at spe
    docker exec -it pf_ros2_comms_example-ros2_base-1 bash
    ```
 
-3. Build the ROS2 workspace:
+4. Build the ROS2 workspace:
    ```bash
+   # Update package lists
+   apt update
+   
+   # Source ROS2 environment
+   source /opt/ros/humble/setup.bash
+   
+   # Install dependencies
+   cd /ros2_ws
+   rosdep install --from-paths src --ignore-src -r -y
+   
+   # Build the workspace
    cd /ros2_ws
    colcon build
+   
+   # Source the built workspace
    source install/setup.bash
    ```
 

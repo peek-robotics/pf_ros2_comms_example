@@ -1,29 +1,9 @@
-# PF Camera Rig MQTT Bridge Configuration
-#
-# This file configures the MQTT bridge for the PF Camera Rig metadata.
-# It specifies the MQTT broker connection details and output directory for logs.
-#
-# Author: Peek Robotics
-# Copyright (C) 2025, Peek Robotics
-
 /**:
   ros__parameters:
-    # Directory where message logs will be stored
-    # Each run creates a timestamped JSON file in this directory
-    output_dir: /tmp
-    
+    output_dir: /ros2_ws/src/grover_bridge/json_dumps
     mqtt:
-      # MQTT Broker Configuration
-      # IP address of the MQTT broker (typically the Grover robot)
       broker_ip: "192.168.1.100"
-      
-      # Port for the MQTT broker (default for MQTT is 1883)
       broker_port: 1883
-      
-      # Keepalive interval in seconds for the MQTT connection
       keepalive: 60
-
-      # MQTT Topics to subscribe to
-      # The PF Camera Rig publishes metadata to this topic
       topics:
         - "grover/cam_rig/metadata"
