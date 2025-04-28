@@ -12,12 +12,39 @@
                     {
                         "nav_enter": [
                             {
+                                "navigation": {
+                                    "obstacles": {
+                                        "lidar": false,
+                                        "sentinel": false
+                                    },
+                                    "mode": {
+                                        "follower": {
+                                            "detection_source": "lidar_row",
+                                            "row_width": 2.9,
+                                            "row_bias": 0
+                                        }
+                                    }
+                                }
+                            },
+                            {
                                 "attachment": {
                                     "device": "Strobe Generator",
                                     "function": "activate",
                                     "arguments": [
                                         1
                                     ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "nav_exit": [
+                            {
+                                "navigation": {
+                                    "obstacles": {
+                                        "lidar": true
+                                    },
+                                    "mode": "waypoint"
                                 }
                             },
                             {
